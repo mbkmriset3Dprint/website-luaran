@@ -1,0 +1,310 @@
+
+:root {
+    --primary-color: #388e3c; /* Hijau yang lebih gelap dan solid */
+    --secondary-color: #66bb6a; /* Hijau sedang */
+    --accent-color: #e57373; /* Merah muda sebagai aksen, bisa diubah */
+    --background-light: #f1f8e9; /* Hijau sangat muda, hampir putih */
+    --text-dark: #212121; /* Hitam pekat untuk teks utama */
+    --text-light: #424242; /* Abu-abu gelap untuk teks sekunder */
+    --white: #ffffff;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --border-light: #e0e0e0;
+
+    --font-primary: 'Poppins', sans-serif; /* Font modern yang populer */
+    --font-secondary: 'Open Sans', sans-serif;
+}
+
+/* IMPORT FONT (Opsional: Jika tidak di-link di HTML <head>) */
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap'); */
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-secondary);
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 25px 20px; /* Sedikit lebih ramping */
+    text-align: center;
+    box-shadow: 0 2px 8px var(--shadow-medium); /* Shadow untuk kedalaman */
+}
+
+header h1 {
+    font-family: var(--font-primary);
+    font-size: 2.5em; /* Ukuran font yang lebih besar */
+    margin-bottom: 15px; /* Jarak bawah h1 */
+    color : black;
+}
+
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    color: var(--white);
+    margin: 0 18px; /* Jarak antar link lebih lega */
+    text-decoration: none;
+    font-weight: 500; /* Sedikit lebih tebal dari normal */
+    font-size: 1.05em;
+    padding: 5px 0; /* Memberikan area klik yang lebih baik */
+    position: relative; /* Untuk underline efek hover */
+    transition: color 0.3s ease; /* Transisi warna saat hover */
+}
+
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px; /* Posisi underline di bawah link */
+    left: 0;
+    background-color: var(--white);
+    transition: width 0.3s ease-out; /* Transisi lebar underline */
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a:hover {
+    color: var(--white); /* Pastikan warna tidak berubah jika hover-nya hanya underline */
+}
+
+main {
+    max-width: 960px; /* Lebar maksimum yang sedikit lebih besar */
+    margin: 40px auto; /* Jarak atas/bawah yang lebih besar */
+    padding: 30px; /* Padding yang lebih besar */
+    background-color: var(--white);
+    border-radius: 10px; /* Border radius yang sedikit lebih halus */
+    box-shadow: 0 8px 25px var(--shadow-light); /* Shadow yang lebih lembut dan tersebar */
+    animation: fadeIn 0.8s ease-out; /* Animasi fade-in saat halaman dimuat */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+h1, h2, h3 {
+    font-family: var(--font-primary);
+    color: var(--primary-color); /* Menggunakan primary-color untuk heading */
+    margin-top: 30px; /* Jarak atas untuk heading */
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px; /* Underline pendek di bawah H2 */
+    height: 3px;
+    background-color: var(--secondary-color);
+    border-radius: 2px;
+}
+
+p {
+    line-height: 1.8; /* Line height yang sedikit lebih lega untuk keterbacaan */
+    margin-bottom: 20px;
+    text-align: justify;
+    color: var(--text-light); /* Warna teks paragraf sedikit lebih lembut */
+}
+
+p br {
+    margin-bottom: 10px; /* Memberikan sedikit spasi ekstra untuk <br> */
+}
+
+
+.gallery {
+    display: grid; /* Menggunakan Grid untuk kontrol yang lebih baik */
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Kolom responsif */
+    gap: 25px; /* Jarak antar item galeri */
+    padding: 20px 0;
+}
+
+@media (min-width: 769px) {
+    .gallery {grid-template-columns: 1fr 1fr; /* Memastikan tepat 2 kolom */}
+}
+
+.gallery figure {
+    margin: 0;
+    padding: 0;
+    background-color: var(--white);
+    border: 1px solid var(--border-light); /* Border yang lebih halus */
+    border-radius: 8px; /* Sudut lebih lembut */
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 4px 15px var(--shadow-light); /* Shadow untuk setiap gambar */
+    transition: transform 0.3s ease-out; /* Animasi saat hover */
+    display: flex; /* Menggunakan flexbox untuk konten figure */
+    flex-direction: column; /* Mengatur konten figure secara vertikal */
+    justify-content: space-between; /* Memastikan figcaption berada di bawah */
+    align-items: center;
+}
+
+.gallery figure:hover {
+    transform: translateY(-8px); /* Efek mengangkat saat dihover */
+    box-shadow: 0 8px 20px var(--shadow-medium);
+}
+
+.gallery img {
+    max-width: 100%;
+    height: 220px; /* Tinggi gambar yang konsisten */
+    object-fit: cover; /* Memastikan gambar mengisi area tanpa distorsi */
+    display: block;
+    width: 100;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.gallery figcaption {
+    padding: 15px; /* Padding lebih besar */
+    font-size: 0.9em;
+    color: var(--text-light);
+    background-color: var(--white);
+    font-weight: 500;
+}
+
+a[download] {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+a[download]:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* --- TIMELINE SECTION --- */
+.timeline {
+    list-style: none; /* Hilangkan bullet default */
+    padding: 0;
+    margin-left: 20px; /* Indentasi untuk visual timeline */
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: var(--border-light); /* Garis vertikal timeline */
+    border-radius: 2px;
+}
+
+.timeline li {
+    position: relative;
+    padding: 10px 0 10px 30px; /* Padding untuk konten item timeline */
+    margin-bottom: 15px;
+    color: var(--text-light);
+}
+
+.timeline li::before {
+    content: '';
+    position: absolute;
+    left: -8px; /* Posisi titik timeline */
+    top: 15px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    border: 3px solid var(--white); /* Border putih agar menonjol dari garis */
+    box-shadow: 0 0 0 2px var(--secondary-color); /* Outer ring */
+}
+
+.timeline li strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 20px 10px; /* Padding yang lebih besar */
+    margin-top: 60px; /* Jarak atas yang lebih besar dari main content */
+    font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    nav a {
+        margin: 0 10px;
+        font-size: 0.95em;
+    }
+
+    main {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 95%; /* Lebih responsif pada layar sedang */
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr; /* Satu kolom untuk layar kecil */
+    }
+
+    .timeline li {
+        padding-left: 25px; /* Sesuaikan padding untuk mobile */
+    }
+
+    .timeline li::before {
+        left: -10px; /* Sesuaikan posisi titik */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column; /* Tautan navigasi menjadi kolom */
+        gap: 10px; /* Jarak antar item nav */
+        margin-top: 20px;
+    }
+
+    nav a {
+        margin: 0;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Pemisah antar link */
+    }
+
+    nav a:last-child {
+        border-bottom: none;
+    }
+
+    main {
+        margin: 15px auto;
+        padding: 15px;
+    }
+}
